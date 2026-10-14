@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0c110e" />
+  <meta name="description" content="A TVA-inspired character dossier for Loki Laufeyson, God of Stories." />
+  <title>Loki Laufeyson | God of Stories — TVA Dossier</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg-1: #0c110e;
+      --bg-2: #172019;
+      --emerald: #73a982;
+      --gold: #d8bd7d;
+      --gold-2: #ad8d50;
+      --gold-pale: #ead9ad;
+      --text: #f0eee5;
+      --muted: #b8c0b6;
+      --shadow: rgba(0, 0, 0, 0.42);
+      --line: rgba(216, 189, 125, 0.23);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 12% 5%, rgba(65, 104, 69, 0.22), transparent 37rem),
+        radial-gradient(ellipse at 88% 18%, rgba(168, 135, 71, 0.13), transparent 34rem),
+        radial-gradient(ellipse at 50% 70%, rgba(29, 57, 37, 0.16), transparent 46rem),
+        linear-gradient(135deg, #0a100c 0%, var(--bg-1) 38%, var(--bg-2) 72%, #0c120e 100%);
+      background-attachment: fixed;
+      position: relative;
+      isolation: isolate;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      opacity: 0.11;
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='320' viewBox='0 0 280 320'%3E%3Cg fill='none' stroke='%23c4ad72' stroke-opacity='.32' stroke-width='1'%3E%3Cpath d='M140 320V190M140 190L78 133V72M140 190L202 133V72M78 133L42 99V42M78 133L105 96V38M202 133L175 96V38M202 133L238 99V42M140 190V108M140 108L118 82V30M140 108L162 82V30'/%3E%3C/g%3E%3Ccircle cx='140' cy='190' r='3' fill='%2373a982' fill-opacity='.5'/%3E%3C/svg%3E"),
+        radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.62) 100%);
+      background-size: 280px 320px, 100% 100%;
+    }
+
+    .page {
+      width: min(1160px, calc(100% - 40px));
+      margin: 34px auto 72px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 13px 19px;
+      border: 1px solid rgba(216, 189, 125, 0.2);
+      border-radius: 15px;
+      background: linear-gradient(110deg, rgba(18, 27, 21, 0.96), rgba(11, 16, 13, 0.92));
+      box-shadow: 0 16px 38px var(--shadow), inset 0 1px rgba(255, 255, 255, 0.025);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 50px;
+      height: 50px;
+      display: block;
+      flex: 0 0 50px;
+      border: 1px solid rgba(216, 189, 125, 0.42);
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 20px rgba(216, 189, 125, 0.1);
+    }
+
+    .top-tag {
+      max-width: 260px;
+      color: var(--gold-pale);
+      font-size: 0.66rem;
+      letter-spacing: 0.17em;
+      text-transform: uppercase;
+      text-align: right;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      grid-template-areas: "portrait copy";
+      gap: 18px;
+      margin-top: 18px;
+      align-items: stretch;
+    }
+
+    .panel {
+      background: linear-gradient(145deg, rgba(31, 46, 34, 0.91), rgba(13, 19, 15, 0.97));
+      border: 1px solid rgba(216, 189, 125, 0.19);
+      border-radius: var(--radius);
+      box-shadow: 0 18px 42px var(--shadow), inset 0 1px rgba(255, 255, 255, 0.025);
+    }
+
+    .hero-copy {
+      grid-area: copy;
+      padding: clamp(28px, 4.5vw, 54px);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 560px;
+      border-color: rgba(216, 189, 125, 0.24);
+      background-color: #101811;
+      background-image:
+        linear-gradient(90deg, rgba(12, 18, 14, 0.98) 0%, rgba(12, 18, 14, 0.94) 36%, rgba(12, 18, 14, 0.78) 68%, rgba(12, 18, 14, 0.64) 100%),
+        linear-gradient(0deg, rgba(9, 14, 11, 0.82), rgba(15, 26, 18, 0.18) 70%),
+        url("timeline-bg.jpg");
+      background-position: center, center, 72% center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .hero-copy > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-copy::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, rgba(115, 169, 130, 0.16), transparent 68%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      margin: 0 0 17px;
+      color: var(--gold);
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3.2rem, 6.1vw, 5.4rem);
+      font-weight: 500;
+      line-height: 0.94;
+      letter-spacing: -0.06em;
+      text-wrap: balance;
+    }
+
+    .hero-title {
+      display: block;
+      margin-top: 20px;
+      color: var(--gold-pale);
+      font-size: clamp(0.76rem, 1.2vw, 0.93rem);
+      font-weight: 700;
+      letter-spacing: 0.32em;
+      line-height: 1.5;
+      text-transform: uppercase;
+    }
+
+    .hero-rule {
+      width: min(100%, 380px);
+      height: 1px;
+      margin-top: 25px;
+      background: linear-gradient(90deg, var(--gold-2), rgba(115, 169, 130, 0.55), transparent);
+    }
+
+    .subtitle {
+      margin: 23px 0 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.85;
+      max-width: 540px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 17px;
+      margin-top: 28px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #c6d7c8;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .badge::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 8px rgba(115, 169, 130, 0.45);
+    }
+
+    .profile-card {
+      grid-area: portrait;
+      display: flex;
+      flex-direction: column;
+      justify-content: stretch;
+      padding: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline-section {
+      margin-top: 16px;
+      padding: 25px;
+      background:
+        radial-gradient(ellipse at 0% 0%, rgba(71, 108, 72, 0.13), transparent 42%),
+        linear-gradient(145deg, rgba(29, 43, 32, 0.93), rgba(13, 19, 15, 0.98));
+    }
+
+    .timeline-tabs {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 19px;
+    }
+
+    .timeline-tabs::before {
+      content: "";
+      position: absolute;
+      z-index: 0;
+      top: 50%;
+      right: 10px;
+      left: 10px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(115, 169, 130, 0.45), rgba(216, 189, 125, 0.38), transparent);
+      pointer-events: none;
+    }
+
+    .timeline-tab {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      padding: 0 17px 0 27px;
+      border: 1px solid rgba(216, 189, 125, 0.22);
+      border-radius: 9px;
+      background: rgba(13, 19, 15, 0.94);
+      color: var(--muted);
+      cursor: pointer;
+      font: inherit;
+      font-size: 0.67rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .timeline-tab::before {
+      content: "";
+      position: absolute;
+      left: 11px;
+      width: 5px;
+      height: 5px;
+      border: 1px solid rgba(115, 169, 130, 0.85);
+      border-radius: 50%;
+      background: #111813;
+      transition: background 180ms ease, box-shadow 180ms ease;
+    }
+
+    .timeline-tab:hover {
+      border-color: rgba(115, 169, 130, 0.58);
+      color: var(--text);
+    }
+
+    .timeline-tab[aria-pressed="true"] {
+      border-color: rgba(216, 189, 125, 0.58);
+      background: linear-gradient(135deg, rgba(58, 83, 57, 0.97), rgba(35, 39, 27, 0.98));
+      color: var(--gold);
+    }
+
+    .timeline-tab[aria-pressed="true"]::before {
+      border-color: var(--gold);
+      background: var(--gold);
+      box-shadow: 0 0 10px rgba(216, 189, 125, 0.55);
+    }
+
+    .timeline-entry {
+      display: grid;
+      grid-template-columns: minmax(150px, 0.42fr) minmax(0, 1fr);
+      gap: 18px;
+      padding: 22px 24px;
+      border: 1px solid rgba(115, 169, 130, 0.2);
+      border-left: 2px solid var(--emerald);
+      border-radius: 0 12px 12px 0;
+      background:
+        radial-gradient(ellipse at 0% 50%, rgba(63, 100, 67, 0.13), transparent 50%),
+        rgba(12, 18, 14, 0.76);
+    }
+
+    .timeline-entry h3 {
+      margin: 0;
+      color: var(--gold);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.15rem;
+      font-weight: 500;
+    }
+
+    .timeline-entry p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+    .profile-portrait {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      min-height: 0;
+      flex: 1;
+      margin: 0;
+      border-radius: 14px;
+      border: 1px solid rgba(216, 189, 125, 0.19);
+      background:
+        radial-gradient(ellipse at 50% 45%, rgba(115, 169, 130, 0.2), transparent 43%),
+        radial-gradient(ellipse at 50% 6%, rgba(216, 189, 125, 0.12), transparent 45%),
+        linear-gradient(160deg, #1a2a20, #111813 72%);
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portrait-art,
+    .portrait-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .portrait-art {
+      margin: auto;
+      max-width: 350px;
+      max-height: 100%;
+      overflow: visible;
+      z-index: 1;
+    }
+
+    .portrait-image {
+      z-index: 2;
+      object-fit: cover;
+      object-position: center 34%;
+    }
+
+    .profile-portrait::after {
+      content: "";
+      position: absolute;
+      z-index: 3;
+      inset: 28% 0 0;
+      background: linear-gradient(180deg, transparent 25%, rgba(8, 12, 9, 0.7) 100%);
+      pointer-events: none;
+    }
+
+    .portrait-caption {
+      position: absolute;
+      z-index: 4;
+      right: 16px;
+      bottom: 15px;
+      left: 16px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      color: rgba(232, 224, 200, 0.82);
+      font-size: 0.59rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .media-section {
+      margin-top: 16px;
+      padding: 25px;
+      background:
+        radial-gradient(ellipse at 100% 0%, rgba(85, 113, 68, 0.12), transparent 40%),
+        linear-gradient(145deg, rgba(27, 40, 30, 0.94), rgba(12, 18, 14, 0.98));
+    }
+
+    .media-section .section-header {
+      margin-bottom: 18px;
+    }
+
+    .video-frame {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 0;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border: 1px solid rgba(216, 189, 125, 0.2);
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22), inset 0 1px rgba(255, 255, 255, 0.04);
+      background:
+        radial-gradient(ellipse at center, rgba(67, 101, 70, 0.22), transparent 55%),
+        linear-gradient(145deg, rgba(24, 36, 27, 0.96), rgba(12, 17, 14, 0.98));
+    }
+
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: grid;
+      align-content: center;
+      padding: clamp(24px, 5vw, 54px);
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .video-placeholder strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--gold);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.25rem, 2.4vw, 1.65rem);
+      font-weight: 500;
+    }
+
+    .video-placeholder span {
+      max-width: 34rem;
+      margin-inline: auto;
+      font-size: 0.9rem;
+      line-height: 1.75;
+    }
+
+    .video-player {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      max-height: min(68vh, 620px);
+      object-fit: contain;
+      background: #080b09;
+    }
+
+    .portrait-image[hidden],
+    .video-player[hidden],
+    .video-placeholder[hidden] {
+      display: none;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 19px;
+    }
+
+    .stat-box {
+      padding: 20px 21px;
+      text-align: left;
+      border-radius: 14px;
+      border: 1px solid rgba(216, 189, 125, 0.17);
+      background: linear-gradient(145deg, rgba(32, 48, 35, 0.82), rgba(14, 20, 16, 0.94));
+      transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+    }
+
+    .stat-box:hover {
+      transform: translateY(-2px);
+      border-color: rgba(115, 169, 130, 0.48);
+    }
+
+    .stat-label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.67rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 9px;
+    }
+
+    .stat-value {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.2rem, 2vw, 1.62rem);
+      font-weight: 500;
+      color: var(--gold);
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+      gap: 18px;
+      margin-top: 19px;
+    }
+
+    .section-box {
+      padding: 25px;
+      background:
+        radial-gradient(ellipse at 100% 0%, rgba(82, 113, 68, 0.1), transparent 38%),
+        linear-gradient(145deg, rgba(29, 43, 32, 0.93), rgba(13, 19, 15, 0.98));
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 19px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid rgba(216, 189, 125, 0.18);
+    }
+
+    .section-header h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.18rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .tiny-pill {
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #b8cdb9;
+      border-left: 1px solid var(--emerald);
+      padding: 5px 0 5px 12px;
+    }
+
+    .type-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 11px;
+    }
+
+    .type-card {
+      min-width: 0;
+      min-height: 124px;
+      padding: 16px;
+      color: inherit;
+      font: inherit;
+      text-align: left;
+      border-radius: 11px;
+      border: 1px solid rgba(216, 189, 125, 0.14);
+      background: linear-gradient(145deg, rgba(34, 50, 37, 0.72), rgba(14, 19, 16, 0.86));
+      box-shadow: inset 0 1px rgba(255, 255, 255, 0.02);
+      cursor: pointer;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .type-card:nth-last-child(-n + 2) {
+      grid-column: 1 / -1;
+    }
+
+    .type-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(115, 169, 130, 0.46);
+      background: linear-gradient(145deg, rgba(40, 59, 44, 0.68), rgba(14, 19, 16, 0.82));
+    }
+
+    .type-card:focus-visible,
+    .timeline-tab:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    .type-card[aria-expanded="true"] {
+      border-color: rgba(115, 169, 130, 0.62);
+    }
+
+    .type-card strong {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--gold);
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .type-card span {
+      display: block;
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 500;
+      line-height: 1.65;
+      overflow-wrap: anywhere;
+    }
+
+    .type-card small {
+      display: inline-block;
+      margin-top: 9px;
+      color: #9cc7a3;
+      font-size: 0.63rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .type-card .type-note {
+      margin: 12px 0 0;
+      padding-top: 11px;
+      border-top: 1px solid rgba(216, 189, 125, 0.16);
+      color: var(--muted);
+      font-size: 0.81rem;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .type-card .type-note[hidden] {
+      display: none;
+    }
+
+    .lore-box {
+      color: var(--muted);
+    }
+
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 0;
+    }
+
+    .feature-list li {
+      padding: 17px 3px;
+      border-bottom: 1px solid rgba(216, 189, 125, 0.14);
+      color: var(--text);
+      font-size: 0.93rem;
+      line-height: 1.75;
+    }
+
+    .feature-list li:last-child {
+      border-bottom: 0;
+    }
+
+    .feature-list strong {
+      display: block;
+      margin-bottom: 5px;
+      color: #a9c5a9;
+      font-size: 0.67rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .page:focus-visible,
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 4px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        width: min(100% - 24px, 520px);
+        margin-top: 12px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "portrait"
+          "copy";
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .hero-copy {
+        min-height: 0;
+        padding: 30px 23px;
+      }
+
+      .profile-portrait {
+        width: min(100%, 430px);
+        aspect-ratio: 4 / 4.3;
+        flex: initial;
+        margin-inline: auto;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .top-tag {
+        margin-left: 64px;
+        text-align: left;
+      }
+
+      .timeline-section {
+        margin-top: 12px;
+        padding: 17px;
+      }
+
+      .timeline-entry {
+        grid-template-columns: 1fr;
+        gap: 7px;
+      }
+
+      .video-frame {
+        aspect-ratio: 16 / 9;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 9px;
+        margin-top: 12px;
+      }
+
+      .content-grid {
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .section-box {
+        padding: 17px;
+      }
+
+      .media-section {
+        margin-top: 12px;
+        padding: 17px;
+      }
+
+      .topbar {
+        padding: 12px 15px;
+      }
+
+      .brand {
+        font-size: 0.7rem;
+      }
+
+      .brand-mark {
+        width: 44px;
+        height: 44px;
+        flex-basis: 44px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .type-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .top-tag {
+        font-size: 0.62rem;
+      }
+
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="topbar panel">
+      <div class="brand">
+        <img class="brand-mark" src="tva-logo.jpg" alt="TVA logo" />
+        <div>
+          <div>Time Variance Authority</div>
+          <div style="font-size: 0.62rem; letter-spacing: 0.2em; color: var(--muted); margin-top: 4px;">Character archive / file 616-L</div>
+        </div>
+      </div>
+      <div class="top-tag">Variant dossier · active timeline</div>
+    </header>
+
+    <section class="hero">
+      <div class="panel hero-copy">
+        <p class="eyebrow">TVA Character Dossier / 616-L</p>
+        <h1>Loki Laufeyson</h1>
+        <span class="hero-title" id="heroTitle">God of Stories</span>
+        <div class="hero-rule" aria-hidden="true"></div>
+        <p class="subtitle" id="heroDescription">
+          Once defined by the stories others told about him, Loki chooses a different ending. At the heart of the branching timelines, he becomes their keeper — carrying the weight of countless possible futures so others can choose their own.
+        </p>
+        <div class="hero-badges">
+          <span class="badge">Asgardian</span>
+          <span class="badge">TVA Variant</span>
+          <span class="badge">Keeper of timelines</span>
+        </div>
+      </div>
+
+      <aside class="panel profile-card">
+        <figure class="profile-portrait" id="portraitFrame" role="img" aria-label="Abstract illustration of branching timelines gathered around a central point">
+          <!-- Put the portrait file beside this HTML file, then change this src to its filename. -->
+          <img class="portrait-image" id="portraitImage" src="loki-profile.jpg" alt="Loki Laufeyson portrait" hidden />
+          <svg class="portrait-art" viewBox="0 0 360 360" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="timelineStroke" x1="0" y1="1" x2="1" y2="0">
+                <stop offset="0" stop-color="#557d5c" />
+                <stop offset="1" stop-color="#cbb477" />
+              </linearGradient>
+              <radialGradient id="timelineGlow">
+                <stop offset="0" stop-color="#d8bd7d" stop-opacity=".22" />
+                <stop offset="1" stop-color="#d8bd7d" stop-opacity="0" />
+              </radialGradient>
+            </defs>
+            <circle cx="180" cy="170" r="132" fill="url(#timelineGlow)" />
+            <circle cx="180" cy="170" r="106" fill="none" stroke="#d8bd7d" stroke-opacity=".2" />
+            <circle cx="180" cy="170" r="83" fill="none" stroke="#73a982" stroke-opacity=".2" stroke-dasharray="2 8" />
+            <g fill="none" stroke="url(#timelineStroke)" stroke-linecap="round" stroke-width="1.6">
+              <path d="M180 323V201M180 201 116 146V75M180 201 244 146V75M116 146 78 117V67M116 146 139 104V48M244 146 221 104V48M244 146 282 117V67M180 201 180 113V47" />
+              <path d="M180 323 180 273 116 231 83 196M180 273 244 231 277 196" stroke-opacity=".62" />
+            </g>
+            <g fill="#d8bd7d">
+              <circle cx="180" cy="201" r="4" />
+              <circle cx="116" cy="146" r="3" />
+              <circle cx="244" cy="146" r="3" />
+              <circle cx="180" cy="113" r="3" />
+              <circle cx="78" cy="117" r="2.5" />
+              <circle cx="282" cy="117" r="2.5" />
+            </g>
+            <circle cx="180" cy="170" r="48" fill="#111813" stroke="#d8bd7d" stroke-opacity=".74" />
+            <circle cx="180" cy="170" r="39" fill="none" stroke="#73a982" stroke-opacity=".72" />
+            <text x="180" y="184" fill="#e4d4a5" font-family="Georgia, serif" font-size="42" text-anchor="middle">L</text>
+          </svg>
+          <figcaption class="portrait-caption">
+            <span>Temporal loom</span>
+            <span>Timeline 616-L</span>
+          </figcaption>
+        </figure>
+      </aside>
+    </section>
+
+    <section class="panel timeline-section" aria-labelledby="timelineHeading">
+      <div class="section-header">
+        <h2 id="timelineHeading">Explore Loki's timeline</h2>
+        <span class="tiny-pill">Select a chapter</span>
+      </div>
+      <div class="timeline-tabs" role="group" aria-label="Choose a chapter in Loki's story">
+        <button class="timeline-tab" type="button" data-chapter="asgard" aria-pressed="false">The Asgardian Prince</button>
+        <button class="timeline-tab" type="button" data-chapter="variant" aria-pressed="false">The TVA Variant</button>
+        <button class="timeline-tab" type="button" data-chapter="stories" aria-pressed="true">God of Stories</button>
+      </div>
+      <article class="timeline-entry" id="timelineEntry" aria-live="polite">
+        <h3 id="chapterTitle">God of Stories</h3>
+        <p id="chapterDescription">Loki accepts a lonely burden to protect the branching timelines, giving others the freedom to choose their own paths.</p>
+      </article>
+    </section>
+
+    <section class="panel media-section" aria-labelledby="videoHeading">
+      <div class="section-header">
+        <h2 id="videoHeading">Loki on screen</h2>
+        <span class="tiny-pill">Personal video</span>
+      </div>
+      <div class="video-frame">
+        <div class="video-placeholder" id="videoPlaceholder">
+          <strong>Video preview</strong>
+          <span>Your video is ready. Press play when you want to watch.</span>
+        </div>
+        <video class="video-player" id="lokiVideo" controls playsinline preload="metadata" aria-label="Loki character video">
+          <!-- Put the video file beside this HTML file; update src and type if its filename or format differs. -->
+          <source src="SNOWMAN-SIA-SnapYT.App.mp4" type="video/mp4" />
+          Your browser does not support embedded video.
+        </video>
+      </div>
+    </section>
+
+    <section class="stats-grid">
+      <div class="stat-box panel">
+        <span class="stat-label">Age</span>
+        <div class="stat-value" id="ageStat">1050</div>
+      </div>
+      <div class="stat-box panel">
+        <span class="stat-label">Origin</span>
+        <div class="stat-value" id="originStat">Yggdrasil</div>
+      </div>
+      <div class="stat-box panel">
+        <span class="stat-label">Role</span>
+        <div class="stat-value" id="roleStat">Storyteller</div>
+      </div>
+      <div class="stat-box panel">
+        <span class="stat-label">Status</span>
+        <div class="stat-value" id="statusStat">Timeline keeper</div>
+      </div>
+    </section>
+
+    <section class="content-grid">
+      <div class="panel section-box">
+        <div class="section-header">
+          <h2>Data Types</h2>
+          <span class="tiny-pill">JS Showcase</span>
+        </div>
+        <div class="type-grid" id="typeGrid"></div>
+      </div>
+
+      <aside class="panel section-box">
+        <div class="section-header">
+          <h2>Character Profile</h2>
+          <span class="tiny-pill">Identity</span>
+        </div>
+        <div class="lore-box">
+          <ul class="feature-list">
+            <li><strong>Title:</strong> <span id="profileTitle">God of Stories</span></li>
+            <li><strong>Signature:</strong> <span id="profileSignature">Time, sacrifice, and transformation</span></li>
+            <li><strong>Theme:</strong> <span id="profileTheme">Choice, connection, and hope</span></li>
+            <li><strong>Legacy:</strong> <span id="profileLegacy">A god who chooses his own story and gives others the chance to do the same.</span></li>
+          </ul>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    const characterName = 'Loki Laufeyson';
+    const realm = 'The TVA';
+    const title = 'God of Stories';
+    const signatureMove = 'Time manipulation and narrative mischief';
+
+    const age = 1050;
+    const variantNumber = 7;
+    const storyScore = 9.6;
+
+    const characterId = 999999999999999999999n;
+
+    const isGod = true;
+    const isSearchingForBelonging = true;
+
+    let prophecyToken;
+
+    const ally = null;
+
+    const characterSymbol = Symbol('loki-variant');
+
+    const companions = {
+      mobius: 'Agent of the TVA',
+      sylvie: 'Variant with a mission',
+      odin: 'Father in another story',
+      thor: 'Brother and rival',
+      loki: characterName
+    };
+
+    const characterProfile = {
+      name: characterName,
+      realm: realm,
+      title: title,
+      age: age,
+      variantNumber: variantNumber,
+      signatureMove: signatureMove,
+      characterId: characterId,
+      isGod: isGod,
+      isSearchingForBelonging: isSearchingForBelonging,
+      prophecyToken: prophecyToken,
+      ally: ally,
+      characterSymbol: characterSymbol,
+      companions: companions
+    };
+
+    const safeStringify = (value) => JSON.stringify(value, (_, item) => (typeof item === 'bigint' ? item.toString() : item));
+
+    const typeData = [
+      { label: 'String', value: characterName, type: typeof characterName },
+      { label: 'String', value: realm, type: typeof realm },
+      { label: 'String', value: title, type: typeof title },
+      { label: 'Number', value: age, type: typeof age },
+      { label: 'Number', value: variantNumber, type: typeof variantNumber },
+      { label: 'Number', value: storyScore, type: typeof storyScore },
+      { label: 'BigInt', value: characterId.toString(), type: typeof characterId },
+      { label: 'Boolean', value: isGod, type: typeof isGod },
+      { label: 'Boolean', value: isSearchingForBelonging, type: typeof isSearchingForBelonging },
+      { label: 'Undefined', value: prophecyToken, type: typeof prophecyToken },
+      { label: 'Null', value: ally, type: typeof ally },
+      { label: 'Symbol', value: characterSymbol.toString(), type: typeof characterSymbol },
+      { label: 'Object', value: safeStringify(companions), type: typeof companions },
+      { label: 'Object', value: safeStringify(characterProfile), type: typeof characterProfile }
+    ];
+
+    const typeNotes = {
+      String: 'Text stored as characters, such as Loki’s name or title.',
+      Number: 'A numeric value used for quantities, measurements, or scores.',
+      BigInt: 'An integer larger than Number can safely represent.',
+      Boolean: 'A true-or-false value representing a condition.',
+      Undefined: 'Declared but not assigned a value yet.',
+      Null: 'Intentionally empty. JavaScript reports its type as object.',
+      Symbol: 'A unique identifier that will never equal another Symbol.',
+      Object: 'A grouped collection of related properties and values.'
+    };
+
+    const consoleData = [
+      { variable: 'characterName', value: characterName, type: typeof characterName },
+      { variable: 'realm', value: realm, type: typeof realm },
+      { variable: 'title', value: title, type: typeof title },
+      { variable: 'signatureMove', value: signatureMove, type: typeof signatureMove },
+      { variable: 'age', value: age, type: typeof age },
+      { variable: 'variantNumber', value: variantNumber, type: typeof variantNumber },
+      { variable: 'storyScore', value: storyScore, type: typeof storyScore },
+      { variable: 'characterId', value: characterId, type: typeof characterId },
+      { variable: 'isGod', value: isGod, type: typeof isGod },
+      { variable: 'isSearchingForBelonging', value: isSearchingForBelonging, type: typeof isSearchingForBelonging },
+      { variable: 'prophecyToken', value: prophecyToken, type: typeof prophecyToken },
+      { variable: 'ally', value: ally, type: typeof ally },
+      { variable: 'characterSymbol', value: characterSymbol, type: typeof characterSymbol },
+      { variable: 'companions', value: companions, type: typeof companions },
+      { variable: 'characterProfile', value: characterProfile, type: typeof characterProfile }
+    ];
+
+    console.log('TVA CHARACTER DOSSIER — JAVASCRIPT DATA TYPES');
+    console.table(consoleData);
+    consoleData.forEach(({ variable, value, type }) => {
+      const displayValue = typeof value === 'bigint' ? `${value}n` : value;
+      console.log(`${variable}:`, displayValue, '| Type:', type);
+    });
+    console.log('Character profile object:', characterProfile);
+    console.log('Additional feature — known companions:', Object.keys(companions).length);
+    console.log('Note: typeof null returns "object" in JavaScript.');
+
+    const grid = document.getElementById('typeGrid');
+
+    typeData.forEach((item) => {
+      const card = document.createElement('button');
+      card.className = 'type-card';
+      card.type = 'button';
+      card.setAttribute('aria-expanded', 'false');
+
+      const label = document.createElement('strong');
+      label.textContent = item.label;
+
+      const value = document.createElement('span');
+      value.textContent = String(item.value);
+
+      const type = document.createElement('small');
+      type.textContent = item.type;
+
+      const note = document.createElement('span');
+      note.className = 'type-note';
+      note.textContent = typeNotes[item.label];
+      note.hidden = true;
+
+      card.appendChild(label);
+      card.appendChild(value);
+      card.appendChild(type);
+      card.appendChild(note);
+      card.addEventListener('click', () => {
+        const expanded = card.getAttribute('aria-expanded') === 'true';
+        card.setAttribute('aria-expanded', String(!expanded));
+        note.hidden = expanded;
+      });
+      grid.appendChild(card);
+    });
+
+    document.getElementById('ageStat').textContent = age;
+
+    const chapters = {
+      asgard: {
+        title: 'The Asgardian Prince',
+        heroTitle: 'God of Mischief',
+        description: 'Raised beside Thor, Loki searches for a place in Asgard and discovers that family, identity, and destiny are more complicated than they first appear.',
+        origin: 'Asgard',
+        role: 'Prince',
+        status: 'Exiled',
+        signature: 'Illusions, sharp wit, and mischief',
+        theme: 'Family, identity, and ambition',
+        legacy: 'A clever prince who wants to be seen for who he is.',
+        chapterDescription: 'Before the TVA, Loki’s rivalry with Thor and search for belonging set him on a path that would split into countless timelines.'
+      },
+      variant: {
+        title: 'The TVA Variant',
+        heroTitle: 'Variant on the Run',
+        description: 'Pulled out of his own timeline, Loki faces the TVA, meets other versions of himself, and begins to question the future he thought was inevitable.',
+        origin: 'The TVA',
+        role: 'Variant',
+        status: 'Unwritten',
+        signature: 'Investigation, alliances, and a little mischief',
+        theme: 'Choice, consequence, and trust',
+        legacy: 'A variant who begins to choose differently.',
+        chapterDescription: 'At the Time Variance Authority, Loki is forced to confront his past—and discovers that his future is not already decided.'
+      },
+      stories: {
+        title: 'God of Stories',
+        heroTitle: 'God of Stories',
+        description: 'Once defined by the stories others told about him, Loki chooses a different ending. At the heart of the branching timelines, he becomes their keeper — carrying the weight of countless possible futures so others can choose their own.',
+        origin: 'Yggdrasil',
+        role: 'Storyteller',
+        status: 'Timeline keeper',
+        signature: 'Time, sacrifice, and transformation',
+        theme: 'Choice, connection, and hope',
+        legacy: 'A god who chooses his own story and gives others the chance to do the same.',
+        chapterDescription: 'Loki accepts a lonely burden to protect the branching timelines, giving others the freedom to choose their own paths.'
+      }
+    };
+
+    const updateText = (id, value) => {
+      document.getElementById(id).textContent = value;
+    };
+
+    updateText('originStat', chapters.stories.origin);
+    updateText('roleStat', chapters.stories.role);
+    updateText('statusStat', chapters.stories.status);
+
+    document.querySelectorAll('.timeline-tab').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const chapter = chapters[tab.dataset.chapter];
+        if (!chapter) return;
+
+        document.querySelectorAll('.timeline-tab').forEach((chapterTab) => {
+          chapterTab.setAttribute('aria-pressed', String(chapterTab === tab));
+        });
+
+        updateText('chapterTitle', chapter.title);
+        updateText('chapterDescription', chapter.chapterDescription);
+        updateText('heroTitle', chapter.heroTitle);
+        updateText('heroDescription', chapter.description);
+        updateText('originStat', chapter.origin);
+        updateText('roleStat', chapter.role);
+        updateText('statusStat', chapter.status);
+        updateText('profileTitle', chapter.title);
+        updateText('profileSignature', chapter.signature);
+        updateText('profileTheme', chapter.theme);
+        updateText('profileLegacy', chapter.legacy);
+      });
+    });
+
+    const portraitImage = document.getElementById('portraitImage');
+    const portraitArtwork = document.querySelector('.portrait-art');
+    const portraitFrame = document.getElementById('portraitFrame');
+    const lokiVideo = document.getElementById('lokiVideo');
+    const videoPlaceholder = document.getElementById('videoPlaceholder');
+    lokiVideo.autoplay = false;
+    lokiVideo.pause();
+
+    const showPortrait = () => {
+      portraitImage.hidden = false;
+      portraitArtwork.hidden = true;
+      portraitFrame.setAttribute('aria-label', 'Loki Laufeyson portrait');
+    };
+
+    portraitImage.addEventListener('load', showPortrait);
+    portraitImage.addEventListener('error', () => {
+      portraitImage.hidden = true;
+      portraitArtwork.hidden = false;
+      portraitFrame.setAttribute('aria-label', 'Abstract illustration of branching timelines gathered around a central point');
+    });
+
+    if (portraitImage.complete && portraitImage.naturalWidth > 0) {
+      showPortrait();
+    }
+
+    lokiVideo.addEventListener('loadedmetadata', () => {
+      lokiVideo.pause();
+      videoPlaceholder.hidden = true;
+    });
+
+    lokiVideo.addEventListener('error', () => {
+      lokiVideo.hidden = true;
+      videoPlaceholder.hidden = false;
+      videoPlaceholder.querySelector('span').textContent = 'SNOWMAN-SIA-SnapYT.App.mp4 could not be loaded. Check that the file is beside this HTML file and that your browser supports its format.';
+    });
+  </script>
+</body>
+</html>
